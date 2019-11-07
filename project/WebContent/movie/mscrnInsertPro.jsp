@@ -37,8 +37,7 @@
 	cal.setTime(vo.getM_date());
 	cal.set(Calendar.HOUR_OF_DAY,hour);
 	cal.set(Calendar.MINUTE,min);
-	cal.add(Calendar.MINUTE,+mdto.getM_time());
-	
+	cal.add(Calendar.MINUTE,+mdto.getM_time());	
 	df = new SimpleDateFormat("HH:mm");
 	String lastTime = df.format(cal.getTime());
 	vo.setM_endTime(lastTime);

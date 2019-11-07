@@ -22,11 +22,11 @@ public class CinemaDAO {
 		
 		return ds.getConnection();
 	}
-	public ArrayList<CinemaVO> list(){
+	public ArrayList<CinemaVO> list(){	// cinema 전체 리스트 리턴
 		ArrayList<CinemaVO> list = new ArrayList<>();
 		try {
 			conn=getConnection();
-			String sql = "select * from cinema c, localtable l where l.l_id=c.l_id";
+			String sql = "select * from cinema c, localtable l where l.l_id=c.l_id order by c.c_id";
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -46,7 +46,7 @@ public class CinemaDAO {
 		}
 		return list;
 	}
-	public ArrayList<CinemaVO> list(String id){
+	public ArrayList<CinemaVO> list(String id){	// 지역별 cinema 리스트 리턴
 		ArrayList<CinemaVO> list = new ArrayList<>();
 		try {
 			conn=getConnection();
@@ -74,7 +74,7 @@ public class CinemaDAO {
 		return list;
 	}
 
-	public CinemaVO getcvo(String id) {
+	public CinemaVO getcvo(String id) {	// cinema id에 대한 정보 리턴
 		CinemaVO cvo=new CinemaVO();
 		try {
 			int id1=Integer.parseInt(id);
@@ -100,7 +100,7 @@ public class CinemaDAO {
 		return cvo;
 	}
 	
-	public void insert(CinemaVO vo) {
+	public void insert(CinemaVO vo) {	// cinema 삽입 메서드
 		try {
 			conn=getConnection();			
 			String sql="insert into cinema values(cinema_seq.nextval,?,?,?)";
@@ -117,7 +117,7 @@ public class CinemaDAO {
 	
 	}
 	
-	public boolean update(CinemaVO vo) {
+	public boolean update(CinemaVO vo) {	// cinema 수정
 		boolean result=false;
 		try {
 			conn=getConnection();
@@ -137,7 +137,7 @@ public class CinemaDAO {
 		}
 		return result;
 	}
-	public void favorinsert(String v_id,String id) {
+	public void favorinsert(String v_id,String id) {	// 멤버에 자주가는 상영관 삽입
 		try {
 			conn=getConnection();
 			String sql="update member set visit=? where id=?";
@@ -152,7 +152,7 @@ public class CinemaDAO {
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 	}
-	public CinemaVO favorload(String id) {
+	public CinemaVO favorload(String id) {	// 자주가는 상영관 로드
 		CinemaVO vo = new CinemaVO();		
 		try {
 			conn=getConnection();
@@ -174,7 +174,7 @@ public class CinemaDAO {
 		return vo;
 	}
 	
-	public String getFavorlist(String id) {
+	public String getFavorlist(String id) {	// DB에 자주가는 상영관 가져오기
 		String s ="";
 		try {
 			conn = getConnection();

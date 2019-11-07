@@ -24,7 +24,7 @@ public class MemberDAO {
 		return ds.getConnection();
 	}
 	
-	public void insertUser(MemberVO dto) {
+	public void insertUser(MemberVO dto) {	// 회원가입
 		try {
 			conn=getConnection();
 			String sql = "insert into member values(?,?,?,?,?,?,sysdate,0,0)";
@@ -45,7 +45,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public boolean loginCheck(String id, String pw) {
+	public boolean loginCheck(String id, String pw) { // 로그인 체크
 		boolean result=false;
 		try {
 			conn=getConnection();
@@ -69,7 +69,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public MemberVO UserData(String id) {
+	public MemberVO UserData(String id) {	//user정보 확인
 		MemberVO dto = new MemberVO();
 		try {
 			conn=getConnection();
@@ -97,7 +97,7 @@ public class MemberDAO {
 		return dto;
 	}
 	
-	public boolean update(MemberVO dto) {
+	public boolean update(MemberVO dto) {	// 회원정보 수정
 		boolean result=false;
 		try {
 			conn=getConnection();
@@ -116,7 +116,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public int confirmId(String id) {
+	public int confirmId(String id) {	// 아이디 중복체크
 		int check=0;
 		try {
 			conn=getConnection();
@@ -138,7 +138,7 @@ public class MemberDAO {
 		return check;
 	}
 	
-	public int deleteMem(String id){
+	public int deleteMem(String id){	// 회원탈퇴
 		int x = 0;
 		try {
 			conn=getConnection();
@@ -181,7 +181,7 @@ public class MemberDAO {
 		return list;
 	}
 	
-	public void setAdmin(String id, String ad) {
+	public void setAdmin(String id, String ad) {	// 권한 변경
 		try {
 			conn=getConnection();
 			pstmt= conn.prepareStatement("update member set admin=? where id=?");

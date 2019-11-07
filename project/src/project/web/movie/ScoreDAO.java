@@ -1,3 +1,4 @@
+ 
 package project.web.movie;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class ScoreDAO {
+public class ScoreDAO {	// 영화 평가 DAO
 	private Connection conn=null;
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
@@ -22,7 +23,7 @@ public class ScoreDAO {
 		return ds.getConnection();
 	}
 	
-	public void insert(ScoreVO vo) {
+	public void insert(ScoreVO vo) {	// 영화 평가 입력
 		try {
 			conn=getConnection();
 			String sql="insert into moviescore values(score_seq.nextval,?,?,?,?)";
@@ -41,7 +42,7 @@ public class ScoreDAO {
 	}
 	
 	
-	public double average(String id) {
+	public double average(String id) {	// 별점 평균
 		double aver=0, sum=0,num=0;
 		try {
 			conn=getConnection();
@@ -64,7 +65,7 @@ public class ScoreDAO {
 		}
 		return aver;
 	}
-	public boolean check(String u_id,String m_id) {
+	public boolean check(String u_id,String m_id) {	// 중복 체크
 		boolean b = false;
 		try {
 			conn = getConnection();
@@ -84,7 +85,7 @@ public class ScoreDAO {
 		}
 		return b;
 	}
-	public ArrayList<ScoreVO> list(String id){
+	public ArrayList<ScoreVO> list(String id){	// 영화에 대한 평가 보기
 		ArrayList<ScoreVO> list= new ArrayList<>();
 		try {
 			conn = getConnection();

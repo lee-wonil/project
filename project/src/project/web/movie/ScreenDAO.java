@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class ScreenDAO {
+public class ScreenDAO {	// 상영관 DAO
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
@@ -20,7 +20,7 @@ public class ScreenDAO {
 		DataSource ds = (DataSource)env.lookup("jdbc/xe");
 		return ds.getConnection();
 	}
-	public void insert(ScreenVO vo) {
+	public void insert(ScreenVO vo) {	// 상영관 삽입
 		try {
 			conn = getConnection();
 			String sql ="insert into screen values(screen_seq.nextval,?,?,?,?,?,?,?,?)";			
@@ -45,7 +45,7 @@ public class ScreenDAO {
 
 		}
 	}
-	public ArrayList<ScreenVO> list(){
+	public ArrayList<ScreenVO> list(){	// 모든 상영관 조회
 		ArrayList<ScreenVO> list = new ArrayList<>();
 		try {
 			conn= getConnection();
@@ -74,7 +74,7 @@ public class ScreenDAO {
 		return list;
 
 	}
-	public ArrayList<ScreenVO> list(String id){
+	public ArrayList<ScreenVO> list(String id){	// cinemaId에 의한 상영관 조회
 		ArrayList<ScreenVO> list = new ArrayList<>();
 		try {
 			conn= getConnection();
@@ -104,7 +104,7 @@ public class ScreenDAO {
 		return list;
 
 	}
-	public ScreenVO get(String id) {
+	public ScreenVO get(String id) {	// DB에 저장되어 있는 상영관 정보 가져오기
 		ScreenVO vo =new ScreenVO();
 		try {
 			conn = getConnection();
@@ -135,7 +135,7 @@ public class ScreenDAO {
 		}
 		return vo;
 	}
-	public void update(ScreenVO vo) {
+	public void update(ScreenVO vo) { // 상영관 수정
 		try {
 			conn = getConnection();
 			String sql = "update screen set num=?,name=?, col=?, row1=?, passagex=?,passagey=?, noseat=? where id=?";

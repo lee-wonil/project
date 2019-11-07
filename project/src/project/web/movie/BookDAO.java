@@ -50,7 +50,7 @@ public class BookDAO {
 		}
 		return list;
 	}
-	public int get(String id) {
+	public int get(String id) {	// 해당 시간표에 예매된 사람의 수 리턴
 		int getNum = 0;
 		try {
 			conn = getConnection();
@@ -71,7 +71,7 @@ public class BookDAO {
 		}
 		return getNum;
 	}
-	public void insertBook(BookVO vo) {
+	public void insertBook(BookVO vo) { // 예매테이블에 값 삽입
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("insert into book values(book_seq.nextval,?,?,?,0,sysdate)");
@@ -89,7 +89,7 @@ public class BookDAO {
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 	}
-	public int getId(BookVO vo) {
+	public int getId(BookVO vo) {//
 		int id = 0;
 		try {
 			conn = getConnection();
@@ -109,7 +109,7 @@ public class BookDAO {
 		}
 		return id;
 	}
-	public boolean checkBook(int id, String[] seat) {
+	public boolean checkBook(int id, String[] seat) {// 다른 사람이 이미 예매를 했는지 체크
 		boolean b = false;
 		try {
 			conn = getConnection();
@@ -135,7 +135,7 @@ public class BookDAO {
 		}
 		return b;
 	}
-	public void payment(int id, int num) {
+	public void payment(int id, int num) {// 결제가 완료되면 값 변경
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("update book set payment=? where id=?");
@@ -150,7 +150,7 @@ public class BookDAO {
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 	}
-	public int getpaymentseq() {
+	public int getpaymentseq() {	// 결제번호의 시퀀스 값을 가져오는 메서드
 		int a = 0;
 		try {
 			conn = getConnection();
@@ -168,7 +168,7 @@ public class BookDAO {
 		}
 		return a;
 	}
-	public int getCount() {
+	public int getCount() {	// 전체 예매 수
 		int max = 0;
 		try {
 			conn = getConnection();
@@ -186,7 +186,7 @@ public class BookDAO {
 		}
 		return max;
 	}
-	public void deleteBook(String id, int payment) {
+	public void deleteBook(String id, int payment) {	// 예매 취소
 		try {
 			conn=getConnection();
 			pstmt=conn.prepareStatement("delete from book where u_id=? and payment=?");

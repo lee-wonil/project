@@ -1,11 +1,11 @@
 package project.web.movie;
 
 public class CinemaVO {
-	private int c_id;
-	private String c_name;
-	private String c_address;
-	private int l_id;
-	private String l_name;
+	private int c_id; // 영화관 아이디
+	private String c_name;// 영화관이름
+	private String c_address;// 영화관 주소
+	private int l_id; // 영화관 지역 아이디
+	private String l_name;// 지역이름
 	public String getL_name() {
 		return l_name;
 	}

@@ -45,7 +45,7 @@ public class GenDAO { // 영화 등록 - 장르
 		}
 		return list;
 	}
-	public void genInset(GenVO vo) {
+	public void genInset(GenVO vo) {// 장르 삽입
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("insert into gen values (gen_seq.nextval, ?)");
@@ -82,5 +82,55 @@ public class GenDAO { // 영화 등록 - 장르
 			if(conn != null) {try {conn.close();}catch(SQLException s) {s.printStackTrace();}}			
 		} 
 		return check;
+	}
+	public void update(GenVO vo) {// 장르업데이트
+		try {
+			conn = getConnection();
+			pstmt=  conn.prepareStatement("update gen set name=? where id=?");			
+			pstmt.setString(1,vo.getName());
+			pstmt.setInt(2, vo.getId());			
+			pstmt.executeUpdate();			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) {try {pstmt.close();}catch(SQLException s){s.printStackTrace();}}
+			if(conn != null) {try {conn.close();}catch(SQLException s){s.printStackTrace();}}
+		}
+	}
+	public GenVO getVO(String id) {// 장르정보 가져오기
+		GenVO vo = new GenVO();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from gen where id=?");
+			pstmt.setInt(1, Integer.parseInt(id));
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo.setId(rs.getInt("id"));
+				vo.setName(rs.getString("name"));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {try {rs.close();}catch(SQLException s) {s.printStackTrace();}}
+			if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {s.printStackTrace();}}
+			if(conn != null) {try {conn.close();}catch(SQLException s) {s.printStackTrace();}}
+		}
+		return vo;
+	}
+	public void delete(String id){	// 장르 삭제
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement("delete from gen where id=?");
+			pstmt.setInt(1, Integer.parseInt(id));
+			pstmt.executeUpdate();			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) {try {pstmt.close();}catch(SQLException s) {s.printStackTrace();}}
+			if(conn!=null) {try {conn.close();}catch(SQLException s) {s.printStackTrace();}}
+			if(rs!=null) {try {rs.close();}catch(SQLException s) {s.printStackTrace();}}
+		}
 	}
 }

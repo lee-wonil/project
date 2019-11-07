@@ -86,7 +86,7 @@ public class MovieDAO {
 		}
 		return movielist;
 	}
-	public MovieVO findById(String id) {
+	public MovieVO findById(String id) {	// 영화 정보 조회
 		MovieVO vo = new MovieVO();
 		try {
 			conn = getConnection();
@@ -114,14 +114,14 @@ public class MovieDAO {
 		}
 		return vo;
 	}
-	public ArrayList<MovieVO> getMovieList(int startRow, int endRow) throws Exception{
+	public ArrayList<MovieVO> getMovieList(int startRow, int endRow) throws Exception{	// 영화 리스트 조회
 		ArrayList<MovieVO> movieDbList = null;
 		String poster = "/project/movie/posterImage";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("select * from( select rownum as rnum, A.* "
-					+ "from (select m.*,g.name gen,gr.name grade,(select count(*) from book b, mscrn msc where msc.id =b.t_id and m.m_id=msc.m_id  group by msc.m_id) count "
-					+ "from movie m, gen g, grade gr where m.m_gen = g.id and gr.id=m.m_grade order by count desc nulls last) a where "
+					+ "from (select m.*,(select count(*) from book b, mscrn msc where msc.id =b.t_id and m.m_id=msc.m_id  group by msc.m_id) count "
+					+ "from movie m order by count desc nulls last) a where "
 					+ "rownum <= ? ) where rnum >= ? ");
 			pstmt.setInt(1, endRow);
 			pstmt.setInt(2, startRow);
@@ -142,8 +142,6 @@ public class MovieDAO {
 					}
 					vo.setM_gen(rs.getInt("m_gen"));
 					vo.setM_time(rs.getInt("m_time"));
-					vo.setM_genName(rs.getString("gen"));
-					vo.setM_gradeName(rs.getString("grade"));
 					movieDbList.add(vo);
 				
 			}
@@ -159,7 +157,7 @@ public class MovieDAO {
 		return movieDbList;
 		
 	}
-	public int getListCount() throws Exception{
+	public int getListCount() throws Exception{	// 영화 개수 리턴
 		int x = 0;
 		try {
 			conn = getConnection();

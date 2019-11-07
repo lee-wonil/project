@@ -60,7 +60,21 @@ public class GradeDAO { // 연령등급 dao
 			if(conn != null) {try {conn.close();}catch(SQLException s){s.printStackTrace();}}
 		}
 	}
-	public int gradeCheck(String name) {
+	public void update(GradeVO vo) {//연령등급 수정
+		try {
+			conn = getConnection();
+			pstmt=  conn.prepareStatement("update grade set name=? where id=?");			
+			pstmt.setString(1,vo.getName());
+			pstmt.setInt(2, vo.getId());			
+			pstmt.executeUpdate();			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) {try {pstmt.close();}catch(SQLException s){s.printStackTrace();}}
+			if(conn != null) {try {conn.close();}catch(SQLException s){s.printStackTrace();}}
+		}
+	}
+	public int gradeCheck(String name) {// 중복체크
 		int check = 0;
 		try {
 			conn = getConnection();
@@ -81,5 +95,42 @@ public class GradeDAO { // 연령등급 dao
 		}
 		return check;
 	}
+	public GradeVO getVO(String id) {//등급 정보 가져오기
+		GradeVO vo = new GradeVO();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from grade where id=?");
+			pstmt.setInt(1, Integer.parseInt(id));
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo.setId(rs.getInt("id"));
+				vo.setName(rs.getString("name"));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {try {rs.close();}catch(SQLException s) {s.printStackTrace();}}
+			if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {s.printStackTrace();}}
+			if(conn != null) {try {conn.close();}catch(SQLException s) {s.printStackTrace();}}
+		}
+		return vo;
+	}
+	public void delete(String id){ // 등급정보 삭제
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement("delete from grade where id=?");
+			pstmt.setInt(1, Integer.parseInt(id));
+			pstmt.executeUpdate();			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt!=null) {try {pstmt.close();}catch(SQLException s) {s.printStackTrace();}}
+			if(conn!=null) {try {conn.close();}catch(SQLException s) {s.printStackTrace();}}
+			if(rs!=null) {try {rs.close();}catch(SQLException s) {s.printStackTrace();}}
+		}
+	}
+
 
 }

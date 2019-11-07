@@ -47,8 +47,8 @@
 				<tr>
 					<td><%=vo.getId()%></td>
 					<td><%=vo.getName()%></td>
-					<td><button onclick="gradeUpdate.jsp?id=<%=vo.getId()%>">수정하기</button></td>
-					<td><button onclick="gradeDelete.jsp?id=<%=vo.getId()%>">삭제하기</button></td>
+					<td><button onclick="location.href='gradeUpdate.jsp?id=<%=vo.getId()%>'">수정하기</button></td>
+					<td><button onclick="location.href='gradeDelete.jsp?id=<%=vo.getId()%>'">삭제하기</button></td>
 				</tr>
 				<%
 					}

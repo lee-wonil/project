@@ -51,8 +51,8 @@
 		<tr>
 			<td><%=vo.getId()%></td>
 			<td><%=vo.getName()%></td>
-			<td><button onclick="genUpdate.jsp?id=<%=vo.getId()%>">수정하기</button></td>
-			<td><button onclick="genDelete.jsp?id=<%=vo.getId()%>">삭제하기</button></td>
+			<td><button onclick="location.href='genUpdate.jsp?id=<%=vo.getId()%>'">수정하기</button></td>
+			<td><button onclick="location.href='genDelete.jsp?id=<%=vo.getId()%>'">삭제하기</button></td>
 		</tr>
 		<%
 			}

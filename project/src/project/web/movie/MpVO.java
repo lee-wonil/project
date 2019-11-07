@@ -3,13 +3,13 @@ package project.web.movie;
 import java.util.Date;
 
 public class MpVO {
-	private int m_id;
-	private String m_title;
-	private String c_name;
+	private int m_id;	// 영화아이디
+	private String m_title; // 영화이름
+	private String c_name; // 상영관 이름
 	private String name;
-	private Date m_date;
-	private String m_startTime;
-	private String m_endTime;
+	private Date m_date;// 해당 영화의 상영일자
+	private String m_startTime;// 시작시간
+	private String m_endTime;//종료시간
 	private int payNum;
 	public int getPayNum() {
 		return payNum;

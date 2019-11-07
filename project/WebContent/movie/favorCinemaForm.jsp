@@ -31,7 +31,7 @@
 	}
 
 </script>
-
+<jsp:include page="userHead.jsp"></jsp:include>
 <% 
 	LocalDAO Ldao = new LocalDAO(); 
 	CinemaDAO Cdao= new CinemaDAO();

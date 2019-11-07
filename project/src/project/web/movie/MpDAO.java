@@ -12,7 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class MpDAO {
+public class MpDAO {	// 마이페이지
 	private Connection conn=null;
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
@@ -24,7 +24,7 @@ public class MpDAO {
 		return ds.getConnection();
 	}
 
-	public ArrayList<MpVO> mp (String id) {
+	public ArrayList<MpVO> mp (String id) {	// 영화 예매 내역 확인
 		ArrayList<MpVO> list = new ArrayList<MpVO>();
 		try {
 			conn=getConnection();
@@ -56,7 +56,7 @@ public class MpDAO {
 		}
 		return list;
 	}
-	public ArrayList<Integer> mp2 (String id) {
+	public ArrayList<Integer> mp2 (String id) {	// 영화 예매번호만 추출
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		try {
 			conn=getConnection();
@@ -76,7 +76,7 @@ public class MpDAO {
 		return list;
 	}
 	
-	public HashMap<Integer, ArrayList<MpVO>> payHash (String id) {
+	public HashMap<Integer, ArrayList<MpVO>> payHash (String id) {	// 결제번호로 해당 데이터를 묶어서 보여줌
 		ArrayList<MpVO> list1 = mp(id);
 		ArrayList<Integer> list2 = mp2(id); 
 		Iterator<Integer> it = list2.iterator();

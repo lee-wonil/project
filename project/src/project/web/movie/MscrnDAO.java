@@ -46,7 +46,7 @@ public class MscrnDAO {
 			if(conn != null) {try{conn.close();}catch (SQLException s) {s.printStackTrace();}}
 		}
 	}
-	public ArrayList<MscrnVO> list(String id){
+	public ArrayList<MscrnVO> list(String id){// 영화 시간표 리스트(지나간거 빼고)
 		ArrayList<MscrnVO> list = new ArrayList<>();
 		try {
 			conn = getConnection();
@@ -85,7 +85,7 @@ public class MscrnDAO {
 		}
 		return list;
 	}
-	public ArrayList<MscrnVO> listAll(String id){
+	public ArrayList<MscrnVO> listAll(String id){	// 영화 아이디에 맞는 전체 영화시간표 리스트
 		ArrayList<MscrnVO> list = new ArrayList<>();
 		try {
 			conn = getConnection();
@@ -116,7 +116,7 @@ public class MscrnDAO {
 		}
 		return list;
 	}
-	public ArrayList<MscrnVO> listAll(){
+	public ArrayList<MscrnVO> listAll(){// 전체영화 리스트
 		ArrayList<MscrnVO> list = new ArrayList<>();
 		try {
 			conn = getConnection();
@@ -144,7 +144,7 @@ public class MscrnDAO {
 		}
 		return list;
 	}
-	public ArrayList<MscrnVO> list(){
+	public ArrayList<MscrnVO> list(){	// 상영 시간표 리스트(현재시간 이후)
 		ArrayList<MscrnVO> list = new ArrayList<>();
 		try {
 			conn = getConnection();
@@ -173,7 +173,7 @@ public class MscrnDAO {
 		}
 		return list;
 	}
-	public MscrnVO get(String id) {
+	public MscrnVO get(String id) {	// id에 대한 상영시간표 정보
 		MscrnVO vo = new MscrnVO();
 		try {
 			conn = getConnection();
@@ -221,7 +221,7 @@ public class MscrnDAO {
 		}
 		return list;
 	}
-	public boolean checkTime(int s_id,Date m_date ,String startTime, String endTime) {
+	public boolean checkTime(int s_id,Date m_date ,String startTime, String endTime) { // 해당 상영관에 시간 중복 체크
 		boolean b = false;
 		try {
 			conn = getConnection();

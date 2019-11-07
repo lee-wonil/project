@@ -54,7 +54,8 @@
 				b =true;
 			}%>
 	<tr>
-		<td><img src=<%=mvo.getM_pic()%> width="100px" height="auto">
+		<td><img src=<%=mvo.getM_pic()%> width="100px" height="auto" onclick="location.href='movieDetail.jsp?id=<%=vo.getM_id()%>'">
+		
 		</td>
 		<td><%=vo.getM_title()%></td>
 		<td><%=vo.getC_name()%></td>

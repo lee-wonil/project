@@ -14,21 +14,24 @@
 <jsp:setProperty property="*" name="vo"/>
 <%	
 	String name = request.getParameter("name");
+	String id = request.getParameter("id");
+	vo.setId(Integer.parseInt(id));
 	GradeDAO dao = new GradeDAO();
-	if(dao.gradeCheck(name)==0){
-		dao.gradeInsert(vo);
-		response.sendRedirect("gradeList.jsp");
-	}
-	else if(name==null||name==""){%>
+	if(name==null||name==""){%>
 	<script type="text/javascript">
 		alert("빈문자열 입력");
 		go.back();
 	</script>
 	<% }	
+	
+	else if(dao.gradeCheck(name)==0){
+		dao.update(vo);
+		response.sendRedirect("gradeList.jsp");
+	}
 	else{
 %>
 	<script type="text/javascript">
 		alert("중복되었습니다.");
-		go.back();
+		history.go(-1);
 	</script>
 <%} %>

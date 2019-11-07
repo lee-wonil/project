@@ -1,3 +1,4 @@
+<%@page import="project.web.movie.CinemaDAO"%>
 <%@page import="project.web.movie.MemberVO"%>
 <%@page import="project.web.movie.ScreenVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -9,6 +10,7 @@
 	ScreenDAO dao = new ScreenDAO();
 	ArrayList<ScreenVO> list=null;
 	MemberVO user = (MemberVO)session.getAttribute("User");
+	CinemaDAO cdao = new CinemaDAO();
 	if(id==null){
 		list = dao.list();
 	}
@@ -33,7 +35,7 @@
 <h2>상영관 목록</h2>
 <table>
 	<tr>
-		<td>영화관 아이디</td>
+		<td>영화관이름</td>
 		<td>상영관 이름</td>
 		<td>상영관 좌석</td>
 		<td>상영관 행</td>
@@ -46,7 +48,7 @@
 		ScreenVO vo = list.get(i);
 		%>
 		<tr>
-			<td><%=vo.getTheaterId() %></td>
+			<td><%=cdao.getcvo(vo.getTheaterId()+"").getC_name()%></td>
 			<td><%=vo.getName() %></td>
 			<td><%=vo.getNum() %></td>
 			<td><%=vo.getRow() %></td>

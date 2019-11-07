@@ -1,13 +1,13 @@
 <%@page import="project.web.movie.MemberVO"%>
-<%@page import="project.web.movie.GradeVO"%>
-<%@page import="project.web.movie.GradeDAO"%>
+<%@page import="project.web.movie.LocalVO"%>
+<%@page import="project.web.movie.LocalDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>grade insert</title>
+<title>Local insert</title>
 <jsp:include page="adminHeader.jsp"></jsp:include>
 </head>
 <%
@@ -26,14 +26,14 @@
 		window.location.href="main.jsp";
 		</script>
 	<%}
-	GradeDAO dao = new GradeDAO();
-	GradeVO vo = dao.getVO(id);
+	LocalDAO dao = new LocalDAO();
+	LocalVO vo = dao.getLocal(id);
 %>
 <body>
-	<form action="gradeUpdatePro.jsp" method="post">
+	<form action="localUpdatePro.jsp" method="post">
 		<table>
 			<tr>				
-				<td>등급명:<input type="text" name="name" value="<%=vo.getName()%>"/></td>
+				<td>등급명:<input type="text" name="name" value="<%=vo.getL_name()%>"/></td>
 				<td><input type="hidden" name="id" value="<%=id %>" /></td>
 			
 			</tr>

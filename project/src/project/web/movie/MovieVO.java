@@ -9,8 +9,8 @@ public class MovieVO {
 	private int m_sco;		// 별점
 	private int m_public;	// 관객수 
 	private int m_grade;	// 등급
-	private String m_genName;
-	private String m_gradeName;
+	private String m_genName;	// 장르이름
+	private String m_gradeName; // 등급이름
 	
 	public String getM_genName() {
 		return m_genName;

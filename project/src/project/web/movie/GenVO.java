@@ -1,8 +1,8 @@
 package project.web.movie;
 
 public class GenVO {
-	private int id;
-	private String name;
+	private int id;	// 장르 아이디
+	private String name;//장르 이름
 	public int getId() {
 		return id;
 	}

@@ -3,12 +3,12 @@ package project.web.movie;
 import java.util.Date;
 
 public class BookVO {
-	private int id;
-	private int t_id;
-	private String u_id;
-	private int seat;
-	private int payment;
-	private Date booktime;
+	private int id;	// 테이블 아이디
+	private int t_id;	// 시간표 아이디
+	private String u_id;	// 유저 아이디
+	private int seat;	// 좌석번호
+	private int payment;	// 결제번호
+	private Date booktime;	// 예매시간
 	public int getId() {
 		return id;
 	}

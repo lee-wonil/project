@@ -41,18 +41,9 @@
 			<td><%=sdao.average(id)%></td>
 			<td><%=bdao.get(id) %></td>
 			<td><%=vo.getM_gradeName() %></td>
-		</tr>
-		<tr>
-		<%%>
-			<td>
-				<input type="button" value="상영시간표" onclick="mscrnList.jsp"/>				
-				<%if(user!=null&&user.getAdmin()!=0){ %>
-				<button>삭제하기</button>
-				<button>수정하기</button>
-				<%} %>
-			</td>
-		</tr>
+		</tr>	
 	</table>
+	<input type="button" value="상영시간표" onclick="location.href='mscrnList.jsp?id=<%=vo.getM_id()%>'"/>								
 	<jsp:include page="scoreList.jsp"><jsp:param value="<%=id %>" name="id"/></jsp:include>
 </body>
 </html>

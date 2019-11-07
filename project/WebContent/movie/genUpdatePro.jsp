@@ -1,4 +1,4 @@
-<%@page import="project.web.movie.GradeDAO"%>
+<%@page import="project.web.movie.GenDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,25 +10,28 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-<jsp:useBean id="vo" class="project.web.movie.GradeVO"></jsp:useBean>
+<jsp:useBean id="vo" class="project.web.movie.GenVO"></jsp:useBean>
 <jsp:setProperty property="*" name="vo"/>
 <%	
 	String name = request.getParameter("name");
-	GradeDAO dao = new GradeDAO();
-	if(dao.gradeCheck(name)==0){
-		dao.gradeInsert(vo);
-		response.sendRedirect("gradeList.jsp");
-	}
-	else if(name==null||name==""){%>
+	String id = request.getParameter("id");
+	vo.setId(Integer.parseInt(id));
+	GenDAO dao = new GenDAO();
+	if(name==null||name==""){%>
 	<script type="text/javascript">
 		alert("빈문자열 입력");
-		go.back();
+		history.go(-1);
 	</script>
 	<% }	
+	
+	else if(dao.genCheck(name)==0){
+		dao.update(vo);
+		response.sendRedirect("genList.jsp");
+	}
 	else{
 %>
 	<script type="text/javascript">
 		alert("중복되었습니다.");
-		go.back();
+		history.go(-1);
 	</script>
 <%} %>

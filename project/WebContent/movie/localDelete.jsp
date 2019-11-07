@@ -1,5 +1,5 @@
 <%@page import="project.web.movie.MemberVO"%>
-<%@page import="project.web.movie.GradeDAO"%>
+<%@page import="project.web.movie.LocalDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -21,11 +21,11 @@
 		</script>
 		<%
 	}else{
-		new GradeDAO().delete(id);
+		new LocalDAO().delete(id);
 		%>
 		<script type="text/javascript">
 			alert("삭제완료되었습니다.");
-			location.href = "gradeList.jsp";
+			location.href = "locallist2.jsp";
 		</script>
 		<%
 	}
